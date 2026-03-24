@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LegalPilot — Legal Consulting AI | PilotStack</title>
+  <meta name="description" content="LegalPilotなら契約書レビュー、コンプライアンスチェック、利用規約自動生成をAIが実行。法務コンサル費を1/40に削減。">
+  <meta property="og:title" content="LegalPilot — 法務コンサル、まだ月額200万円払いますか？">
+  <meta property="og:description" content="AIが契約書レビューを3分で完了。法務コンサル費を1/40に。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mattyopon.github.io/legalpilot/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="LegalPilot — Legal Consulting AI">
+  <meta name="twitter:description" content="AIが契約書レビューを3分で完了。法務コンサル費を1/40に。">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%231e3a5f'/><text x='50%' y='54%' dominant-baseline='middle' text-anchor='middle' font-size='10' font-weight='bold' fill='%23fbbf24'>LP</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Noto+Sans+JP:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #1e3a5f; --primary-light: #bfdbfe; --primary-dark: #0f2035;
+      --accent: #fbbf24; --accent2: #1e40af;
+      --bg-dark: #0a0f1a; --bg-dark2: #0f1528;
+      --bg-light: #fafbff; --bg-light2: #f0f4ff;
+      --text-primary: #18181b; --text-secondary: #52525b; --text-muted: #a1a1aa;
+      --border: #e4e4e7; --radius: 12px; --radius-lg: 20px;
+      --shadow: 0 4px 6px -1px rgba(0,0,0,.1); --shadow-lg: 0 10px 15px -3px rgba(0,0,0,.1);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg-light: #0a0f1a; --bg-light2: #0f1528; --text-primary: #fafafa; --text-secondary: #a1a1aa; --text-muted: #71717a; --border: #1a2540; }
+      .card { background: #0f1528; border-color: #1a2540; }
+      .stats-section { background: #0f1528; }
+      .features-section { background: #0a0f1a; }
+      .compare-section { background: #0f1528; }
+      .compare-table { background: #0f1528; }
+      .compare-table th { background: #142040; color: #fafafa; }
+      .compare-table td { border-color: #1a2540; color: #a1a1aa; }
+      .compare-table tr:nth-child(even) td { background: #080c15; }
+      .input-group input { background: #0f1528; border-color: #2a3550; color: #fafafa; }
+      .nav { background: rgba(10,15,26,.95); border-color: rgba(255,255,255,.06); }
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans JP', 'Inter', system-ui, sans-serif; font-size: 16px; line-height: 1.7; color: var(--text-primary); background: var(--bg-light); -webkit-font-smoothing: antialiased; }
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+    section { padding: 80px 0; }
+    @media (max-width: 768px) { section { padding: 56px 0; } }
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,.06); padding: 0 24px; }
+    .nav-inner { max-width: 1140px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { font-size: 20px; font-weight: 700; color: var(--text-primary); text-decoration: none; letter-spacing: -.5px; }
+    .nav-logo span { color: var(--accent); }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    .lang-switcher { display: flex; align-items: center; gap: 4px; background: var(--bg-light2); border-radius: 100px; padding: 3px; }
+    .lang-btn { display: flex; align-items: center; gap: 5px; padding: 5px 10px; border-radius: 100px; font-size: 12px; font-weight: 600; border: none; cursor: pointer; background: transparent; color: var(--text-muted); transition: .2s; white-space: nowrap; font-family: inherit; }
+    .lang-btn.active { background: var(--bg-light); color: var(--text-primary); box-shadow: 0 1px 4px rgba(0,0,0,.12); }
+    @media (prefers-color-scheme: dark) { .lang-switcher { background: #142040; } .lang-btn.active { background: #1a2540; color: #fbbf24; } }
+    @media (max-width: 480px) { .lang-btn .lang-label { display: none; } .lang-btn { padding: 5px 7px; } }
+    .nav-cta { background: var(--primary); color: #fff; padding: 8px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; transition: .2s; white-space: nowrap; }
+    .nav-cta:hover { background: var(--primary-dark); }
+    .hero { padding: 160px 0 96px; background: linear-gradient(135deg, #0a0f1a 0%, #0f1a2d 40%, #1a2d4f 100%); position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 70% 40%, rgba(30,58,95,.2) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 20% 70%, rgba(251,191,36,.06) 0%, transparent 60%); }
+    .hero::after { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.03) 1px, transparent 1px); background-size: 28px 28px; }
+    .hero-content { position: relative; z-index: 1; text-align: center; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(251,191,36,.12); color: #fde68a; border: 1px solid rgba(251,191,36,.3); padding: 6px 16px; border-radius: 100px; font-size: 13px; font-weight: 600; margin-bottom: 28px; }
+    .hero-badge-dot { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.6;transform:scale(1.3)} }
+    .hero h1 { font-size: clamp(26px, 5vw, 54px); font-weight: 900; color: #fff; line-height: 1.18; letter-spacing: -1px; margin-bottom: 24px; }
+    .hero h1 .accent { color: var(--accent); }
+    .hero-sub { font-size: clamp(15px, 2.2vw, 19px); color: #a1a1aa; max-width: 700px; margin: 0 auto 40px; line-height: 1.7; }
+    .hero-sub strong { color: #fde68a; font-weight: 600; }
+    .input-group { display: flex; gap: 12px; max-width: 480px; margin: 0 auto; flex-wrap: wrap; justify-content: center; }
+    .input-group input { flex: 1; min-width: 220px; padding: 14px 18px; border-radius: 10px; border: 1.5px solid rgba(255,255,255,.15); background: rgba(255,255,255,.06); color: #fff; font-size: 15px; font-family: inherit; }
+    .input-group input::placeholder { color: #71717a; }
+    .input-group input:focus { outline: none; border-color: var(--accent); }
+    .btn-cta { padding: 14px 28px; border-radius: 10px; background: var(--accent); color: #18181b; font-size: 15px; font-weight: 700; border: none; cursor: pointer; font-family: inherit; transition: .2s; white-space: nowrap; }
+    .btn-cta:hover { background: #f59e0b; transform: translateY(-1px); }
+    .hero-note { margin-top: 16px; color: #71717a; font-size: 13px; }
+    .form-success { display: none; color: #4ade80; font-size: 16px; font-weight: 600; margin-top: 16px; }
+    .stats-section { background: var(--bg-light2); }
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; text-align: center; }
+    @media (max-width: 640px) { .stats-grid { grid-template-columns: 1fr; gap: 40px; } }
+    .stat-number { font-size: clamp(44px, 8vw, 72px); font-weight: 900; color: var(--primary); line-height: 1; letter-spacing: -2px; margin-bottom: 8px; }
+    @media (prefers-color-scheme: dark) { .stat-number { color: var(--accent); } }
+    .stat-label { font-size: 15px; color: var(--text-secondary); font-weight: 500; }
+    .stat-sub { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+    .section-label { font-size: 12px; font-weight: 700; letter-spacing: 2px; color: var(--accent); text-transform: uppercase; margin-bottom: 12px; }
+    @media (prefers-color-scheme: light) { .section-label { color: var(--primary); } }
+    .section-title { font-size: clamp(24px, 4vw, 38px); font-weight: 800; color: var(--text-primary); line-height: 1.25; letter-spacing: -.5px; margin-bottom: 16px; }
+    .section-desc { font-size: 17px; color: var(--text-secondary); max-width: 600px; line-height: 1.7; }
+    .text-center { text-align: center; }
+    .text-center .section-desc { margin: 0 auto; }
+    .features-section { background: var(--bg-light); }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 48px; }
+    .card { background: var(--bg-light2); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; transition: box-shadow .2s, transform .2s; }
+    .card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+    .card-icon { font-size: 28px; margin-bottom: 14px; display: block; }
+    .card h3 { font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; }
+    .card p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+    .compare-section { background: var(--bg-light2); }
+    .compare-wrapper { overflow-x: auto; margin-top: 48px; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); }
+    .compare-table { width: 100%; border-collapse: collapse; background: var(--bg-light); font-size: 15px; }
+    .compare-table th { padding: 18px 24px; text-align: left; background: var(--bg-dark); color: #fff; font-weight: 700; font-size: 14px; }
+    .compare-table th:first-child { border-radius: var(--radius-lg) 0 0 0; }
+    .compare-table th:last-child { border-radius: 0 var(--radius-lg) 0 0; }
+    .compare-table td { padding: 18px 24px; border-bottom: 1px solid var(--border); color: var(--text-secondary); }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table td:first-child { font-weight: 600; color: var(--text-primary); }
+    .consultant-col { color: #ef4444; }
+    .pilot-col { color: #22c55e; font-weight: 600; }
+    .cta-section { background: linear-gradient(135deg, #0a0f1a, #0f1a2d, #1a2d4f); padding: 96px 0; text-align: center; position: relative; overflow: hidden; }
+    .cta-section::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.03) 1px, transparent 1px); background-size: 28px 28px; }
+    .cta-section::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 600px; height: 300px; background: radial-gradient(ellipse, rgba(251,191,36,.08) 0%, transparent 70%); pointer-events: none; }
+    .cta-content { position: relative; z-index: 1; }
+    .cta-section h2 { font-size: clamp(24px, 4vw, 40px); font-weight: 900; color: #fff; margin-bottom: 16px; }
+    .cta-section p { color: #a1a1aa; font-size: 17px; margin-bottom: 40px; }
+    .footer { background: var(--bg-dark); color: #71717a; padding: 40px 0; font-size: 14px; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-logo { color: var(--accent); font-weight: 700; text-decoration: none; }
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .5s ease, transform .5s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<nav class="nav"><div class="nav-inner">
+  <a href="#top" class="nav-logo">Legal<span>Pilot</span></a>
+  <div class="nav-right">
+    <div class="lang-switcher">
+      <button class="lang-btn active" id="btn-ja" onclick="setLang('ja')"><span class="lang-flag">&#127471;&#127477;</span><span class="lang-label">JP</span></button>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')"><span class="lang-flag">&#127482;&#127480;</span><span class="lang-label">EN</span></button>
+    </div>
+    <a href="#cta" class="nav-cta" data-i18n="nav.cta">早期アクセス登録</a>
+  </div>
+</div></nav>
+
+<section class="hero" id="top"><div class="container hero-content">
+  <div class="hero-badge"><span class="hero-badge-dot"></span><span data-i18n="hero.badge">契約書レビュー / コンプライアンス AI</span></div>
+  <h1 data-i18n-html="hero.h1">法務コンサル、まだ<br><span class="accent">月額200万円</span>払いますか？</h1>
+  <p class="hero-sub" data-i18n-html="hero.sub">LegalPilotなら<strong>契約書レビュー・コンプライアンスチェック・利用規約生成</strong>をAIが3分で完了。<br>法務コンサル費を<strong>1/40に削減</strong>。</p>
+  <form id="hero-form" class="input-group" action="https://formspree.io/f/mzdjnwyn" method="POST">
+    <input type="email" name="email" placeholder="you@company.com" required>
+    <button type="submit" class="btn-cta" data-i18n="hero.cta">早期アクセスを取得</button>
+  </form>
+  <p class="hero-note" data-i18n="hero.note">Coming Soon - 無料で早期アクセスに登録</p>
+  <p class="form-success" id="hero-success" data-i18n="form.success">ありがとうございます！ローンチ時にご連絡します。</p>
+</div></section>
+
+<section class="stats-section"><div class="container"><div class="stats-grid">
+  <div class="fade-in">
+    <div class="stat-number">1<span style="font-size:.45em">/40</span></div>
+    <div class="stat-label" data-i18n="stats.s1.label">のコスト</div>
+    <div class="stat-sub" data-i18n="stats.s1.sub">法務コンサル比</div>
+  </div>
+  <div class="fade-in">
+    <div class="stat-number">100<span style="font-size:.4em">+</span></div>
+    <div class="stat-label" data-i18n="stats.s2.label">契約テンプレート</div>
+    <div class="stat-sub" data-i18n="stats.s2.sub">NDA / 業務委託 / ライセンス等</div>
+  </div>
+  <div class="fade-in">
+    <div class="stat-number">3<span style="font-size:.5em" data-i18n="stats.s3.unit">分</span></div>
+    <div class="stat-label" data-i18n="stats.s3.label">でレビュー完了</div>
+    <div class="stat-sub" data-i18n="stats.s3.sub">従来: 3〜5営業日</div>
+  </div>
+</div></div></section>
+
+<section class="features-section" id="features"><div class="container">
+  <div class="fade-in text-center">
+    <div class="section-label" data-i18n="features.label">FEATURES</div>
+    <h2 class="section-title" data-i18n="features.title">5つのAI法務コンサルティング機能</h2>
+    <p class="section-desc" data-i18n="features.desc">契約書レビューから法改正アラートまで。高額な法務コンサルの仕事をAIが代替。</p>
+  </div>
+  <div class="features-grid">
+    <div class="card fade-in"><span class="card-icon">&#128196;</span><h3 data-i18n="features.f1.title">契約書レビューAI</h3><p data-i18n="features.f1.desc">契約書をアップロードするだけで、リスク条項・不利条件・欠落条項を自動検出。修正案と根拠を提示。</p></div>
+    <div class="card fade-in"><span class="card-icon">&#9989;</span><h3 data-i18n="features.f2.title">コンプライアンスチェック</h3><p data-i18n="features.f2.desc">個人情報保護法・下請法・景表法等の主要法令に基づく自動チェック。違反リスクをスコアリング。</p></div>
+    <div class="card fade-in"><span class="card-icon">&#128221;</span><h3 data-i18n="features.f3.title">利用規約自動生成</h3><p data-i18n="features.f3.desc">サービス内容を入力するだけで、利用規約・プライバシーポリシー・特商法表記を自動生成。</p></div>
+    <div class="card fade-in"><span class="card-icon">&#128230;</span><h3 data-i18n="features.f4.title">NDA/業務委託テンプレート</h3><p data-i18n="features.f4.desc">100種類以上の契約テンプレートから最適なものを選択。カスタマイズ可能なクリーン版を生成。</p></div>
+    <div class="card fade-in"><span class="card-icon">&#128276;</span><h3 data-i18n="features.f5.title">法改正アラート</h3><p data-i18n="features.f5.desc">関連法令の改正を自動監視し、影響を分析。必要な対応アクションとタイムラインを自動生成。</p></div>
+  </div>
+</div></section>
+
+<section class="compare-section"><div class="container">
+  <div class="fade-in text-center">
+    <div class="section-label" data-i18n="compare.label">COMPARISON</div>
+    <h2 class="section-title" data-i18n="compare.title">LegalPilot vs. 法務コンサル</h2>
+  </div>
+  <div class="compare-wrapper fade-in"><table class="compare-table">
+    <thead><tr><th data-i18n="compare.th.item">項目</th><th data-i18n="compare.th.consultant">法務コンサル</th><th data-i18n="compare.th.pilot">LegalPilot</th></tr></thead>
+    <tbody>
+      <tr><td data-i18n="compare.r1.item">月額コスト</td><td class="consultant-col" data-i18n="compare.r1.consultant">200万円〜</td><td class="pilot-col" data-i18n="compare.r1.pilot">5万円</td></tr>
+      <tr><td data-i18n="compare.r2.item">契約書レビュー</td><td data-i18n="compare.r2.consultant">3〜5営業日</td><td class="pilot-col" data-i18n="compare.r2.pilot">3分</td></tr>
+      <tr><td data-i18n="compare.r3.item">テンプレート</td><td data-i18n="compare.r3.consultant">事務所固有（限定）</td><td class="pilot-col" data-i18n="compare.r3.pilot">100種類以上</td></tr>
+      <tr><td data-i18n="compare.r4.item">法改正対応</td><td data-i18n="compare.r4.consultant">顧問契約（追加費用）</td><td class="pilot-col" data-i18n="compare.r4.pilot">自動アラート・分析</td></tr>
+      <tr><td data-i18n="compare.r5.item">利用規約生成</td><td data-i18n="compare.r5.consultant">個別見積り</td><td class="pilot-col" data-i18n="compare.r5.pilot">自動生成・標準搭載</td></tr>
+    </tbody>
+  </table></div>
+</div></section>
+
+<section class="cta-section" id="cta"><div class="container cta-content">
+  <h2 data-i18n="cta.title">Coming Soon &mdash; 早期アクセスに登録</h2>
+  <p data-i18n="cta.desc">メールアドレスを登録して、LegalPilotのローンチ通知を受け取りましょう。</p>
+  <form id="cta-form" class="input-group" action="https://formspree.io/f/mzdjnwyn" method="POST">
+    <input type="email" name="email" placeholder="you@company.com" required>
+    <button type="submit" class="btn-cta" data-i18n="cta.button">早期アクセスを取得</button>
+  </form>
+  <p class="form-success" id="cta-success" data-i18n="form.success">ありがとうございます！ローンチ時にご連絡します。</p>
+  <p class="hero-note" data-i18n="cta.note">無料で登録。ローンチ時にお知らせします。</p>
+</div></section>
+
+<footer class="footer"><div class="container"><div class="footer-inner">
+  <a href="#top" class="footer-logo">LegalPilot</a>
+  <span>&copy; 2026 PilotStack. All rights reserved.</span>
+</div></div></footer>
+
+<script>
+const i18n = {
+  ja: {
+    "nav.cta":"早期アクセス登録","hero.badge":"契約書レビュー / コンプライアンス AI",
+    "hero.h1":"法務コンサル、まだ<br><span class='accent'>月額200万円</span>払いますか？",
+    "hero.sub":"LegalPilotなら<strong>契約書レビュー・コンプライアンスチェック・利用規約生成</strong>をAIが3分で完了。<br>法務コンサル費を<strong>1/40に削減</strong>。",
+    "hero.cta":"早期アクセスを取得","hero.note":"Coming Soon - 無料で早期アクセスに登録",
+    "form.success":"ありがとうございます！ローンチ時にご連絡します。",
+    "stats.s1.label":"のコスト","stats.s1.sub":"法務コンサル比",
+    "stats.s2.label":"契約テンプレート","stats.s2.sub":"NDA / 業務委託 / ライセンス等",
+    "stats.s3.label":"でレビュー完了","stats.s3.unit":"分","stats.s3.sub":"従来: 3〜5営業日",
+    "features.label":"機能","features.title":"5つのAI法務コンサルティング機能",
+    "features.desc":"契約書レビューから法改正アラートまで。高額な法務コンサルの仕事をAIが代替。",
+    "features.f1.title":"契約書レビューAI","features.f1.desc":"契約書をアップロードするだけで、リスク条項・不利条件・欠落条項を自動検出。修正案と根拠を提示。",
+    "features.f2.title":"コンプライアンスチェック","features.f2.desc":"個人情報保護法・下請法・景表法等の主要法令に基づく自動チェック。違反リスクをスコアリング。",
+    "features.f3.title":"利用規約自動生成","features.f3.desc":"サービス内容を入力するだけで、利用規約・プライバシーポリシー・特商法表記を自動生成。",
+    "features.f4.title":"NDA/業務委託テンプレート","features.f4.desc":"100種類以上の契約テンプレートから最適なものを選択。カスタマイズ可能なクリーン版を生成。",
+    "features.f5.title":"法改正アラート","features.f5.desc":"関連法令の改正を自動監視し、影響を分析。必要な対応アクションとタイムラインを自動生成。",
+    "compare.label":"比較","compare.title":"LegalPilot vs. 法務コンサル",
+    "compare.th.item":"項目","compare.th.consultant":"法務コンサル","compare.th.pilot":"LegalPilot",
+    "compare.r1.item":"月額コスト","compare.r1.consultant":"200万円〜","compare.r1.pilot":"5万円",
+    "compare.r2.item":"契約書レビュー","compare.r2.consultant":"3〜5営業日","compare.r2.pilot":"3分",
+    "compare.r3.item":"テンプレート","compare.r3.consultant":"事務所固有（限定）","compare.r3.pilot":"100種類以上",
+    "compare.r4.item":"法改正対応","compare.r4.consultant":"顧問契約（追加費用）","compare.r4.pilot":"自動アラート・分析",
+    "compare.r5.item":"利用規約生成","compare.r5.consultant":"個別見積り","compare.r5.pilot":"自動生成・標準搭載",
+    "cta.title":"Coming Soon \u2014 早期アクセスに登録","cta.desc":"メールアドレスを登録して、LegalPilotのローンチ通知を受け取りましょう。",
+    "cta.button":"早期アクセスを取得","cta.note":"無料で登録。ローンチ時にお知らせします。"
+  },
+  en: {
+    "nav.cta":"Early Access","hero.badge":"Contract Review / Compliance AI",
+    "hero.h1":"Legal consulting, still paying<br><span class='accent'>$15,000/month</span>?",
+    "hero.sub":"LegalPilot automates <strong>contract reviews, compliance checks, and ToS generation</strong> with AI in 3 minutes.<br>Cut legal consulting costs by <strong>97%</strong>.",
+    "hero.cta":"Get early access","hero.note":"Coming Soon - Sign up for free early access",
+    "form.success":"Thank you! We'll notify you at launch.",
+    "stats.s1.label":"of the cost","stats.s1.sub":"vs. legal consultants",
+    "stats.s2.label":"Contract templates","stats.s2.sub":"NDA / Services / License etc.",
+    "stats.s3.label":"to review contracts","stats.s3.unit":"min","stats.s3.sub":"Traditional: 3-5 business days",
+    "features.label":"FEATURES","features.title":"5 AI legal consulting features",
+    "features.desc":"From contract review to regulatory alerts. AI replaces expensive legal consultants.",
+    "features.f1.title":"Contract Review AI","features.f1.desc":"Upload contracts to auto-detect risk clauses, unfavorable terms, and missing provisions. With suggested revisions.",
+    "features.f2.title":"Compliance Check","features.f2.desc":"Automated check against major regulations (data privacy, subcontracting, consumer protection). Risk scoring included.",
+    "features.f3.title":"Terms of Service Generator","features.f3.desc":"Input your service details to auto-generate Terms of Service, Privacy Policy, and legal disclosures.",
+    "features.f4.title":"NDA/Contract Templates","features.f4.desc":"Choose from 100+ contract templates. Generate clean, customizable versions for your needs.",
+    "features.f5.title":"Regulatory Alerts","features.f5.desc":"Auto-monitor relevant law changes and analyze impact. Generate required action items and timelines.",
+    "compare.label":"COMPARISON","compare.title":"LegalPilot vs. Legal Consultants",
+    "compare.th.item":"Item","compare.th.consultant":"Legal Consultant","compare.th.pilot":"LegalPilot",
+    "compare.r1.item":"Monthly Cost","compare.r1.consultant":"$15,000+","compare.r1.pilot":"$350",
+    "compare.r2.item":"Contract Review","compare.r2.consultant":"3-5 business days","compare.r2.pilot":"3 minutes",
+    "compare.r3.item":"Templates","compare.r3.consultant":"Firm-specific (limited)","compare.r3.pilot":"100+ templates",
+    "compare.r4.item":"Law Updates","compare.r4.consultant":"Retainer (extra cost)","compare.r4.pilot":"Auto alerts & analysis",
+    "compare.r5.item":"ToS Generation","compare.r5.consultant":"Custom quote","compare.r5.pilot":"Auto-generated, included",
+    "cta.title":"Coming Soon \u2014 Sign up for early access","cta.desc":"Enter your email to get notified when LegalPilot launches.",
+    "cta.button":"Get early access","cta.note":"Free to sign up. We'll notify you at launch."
+  }
+};
+let currentLang='ja';
+function setLang(lang){currentLang=lang;document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));document.getElementById('btn-'+lang).classList.add('active');document.documentElement.lang=lang;document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(i18n[lang]?.[k])el.textContent=i18n[lang][k];});document.querySelectorAll('[data-i18n-html]').forEach(el=>{const k=el.getAttribute('data-i18n-html');if(i18n[lang]?.[k])el.innerHTML=i18n[lang][k];});localStorage.setItem('legalpilot-lang',lang);}
+document.querySelectorAll('form').forEach(form=>{form.addEventListener('submit',function(e){e.preventDefault();const data=new FormData(this);fetch(this.action,{method:'POST',body:data,headers:{'Accept':'application/json'}}).then(r=>{if(r.ok){this.style.display='none';this.nextElementSibling.style.display='block';}});});});
+const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
+document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+const saved=localStorage.getItem('legalpilot-lang');if(saved)setLang(saved);else{const bl=navigator.language||'';setLang(bl.startsWith('ja')?'ja':'en');}
+</script>
+</body>
+</html>
